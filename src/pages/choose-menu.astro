@@ -1,0 +1,31 @@
+---
+import Layout from "@layouts/Layout.astro";
+import SectionContainer from "@components/SectionContainer.astro";
+
+// Recupera la ubicación desde localStorage
+let location = "";
+if (typeof window !== "undefined") {
+    location = localStorage.getItem("locationInput") || "";
+}
+---
+
+<Layout title="Selecciona tu producto del menú" description="Disfruta de las mejores pizzas hechas con ingredientes frescos y de calidad. En Pizza Galaxia, cada pizza es una delicia. Ven a probar nuestras especialidades en un ambiente acogedor o haz tu pedido en línea para disfrutar en casa. ¡La experiencia perfecta te espera!">
+    <main>
+        <SectionContainer id="MenuProductos" classname="flex w-full min-h-screen mt-20 px-4 sm:px-8 lg:px-16 mx-auto max-w-md">
+            <p class="text-xl text-left" id="displayLocation">
+                {location ? location : "Cargando..."}
+            </p>
+        </SectionContainer>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const displayLocation = document.getElementById("displayLocation");
+
+            if (displayLocation) {
+                const location = localStorage.getItem("locationInput");
+                displayLocation.textContent = location ? location : "No se ingresó ninguna ubicación.";
+            }
+        });
+    </script>
+</Layout>
