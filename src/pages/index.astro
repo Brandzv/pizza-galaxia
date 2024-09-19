@@ -1,13 +1,19 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import PedirOnline from "@components/PedirOnline.astro";
+import Parallax from "@components/Parallax.astro";
+import ArrowBotton from "@icons/ArrowBotton.astro";
 import MenuPizza from "@components/MenuPizza.astro";
 ---
 
 <Layout title="Pizza Galaxia" description="Disfruta de las mejores pizzas hechas con ingredientes frescos y de calidad. En Pizza Galaxia, cada pizza es una delicia. Ven a probar nuestras especialidades en un ambiente acogedor o haz tu pedido en línea para disfrutar en casa. ¡La experiencia perfecta te espera!">
     <main>
         <PedirOnline />
-
+        <Parallax />
+        <div class="flex justify-center my-5 animate-bounce">
+            <span class="flex items-center font-semibold">Menú</span>
+            <ArrowBotton />
+        </div>
         <MenuPizza />
     </main>
 </Layout>
