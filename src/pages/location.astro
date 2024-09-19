@@ -5,16 +5,31 @@ import SectionContainer from "@components/SectionContainer.astro";
 
 <Layout title="Ingresa tu ubicación" description="Disfruta de las mejores pizzas hechas con ingredientes frescos y de calidad. En Pizza Galaxia, cada pizza es una delicia. Ven a probar nuestras especialidades en un ambiente acogedor o haz tu pedido en línea para disfrutar en casa. ¡La experiencia perfecta te espera!">
     <main>
-        <SectionContainer id="PedirOnline" classname="flex items-center justify-center min-h-screen px-4 sm:px-8 lg:px-16">
+        <SectionContainer id="Ubicacion" classname="flex items-center justify-center w-screen min-h-screen px-4 sm:px-8 lg:px-16">
             <div class="relative w-full max-w-xl sm:max-w-2xl lg:max-w-3xl h-auto bg-gray-800 flex flex-col items-center justify-center rounded-lg shadow-lg p-6 sm:p-8 lg:p-10">
                 <div class="flex flex-col sm:flex-row items-center justify-center text-center sm:text-left space-y-4 sm:space-y-0 sm:space-x-4">
-                    <h2 class="text-base sm:text-sm md:text-base font-bold">Ingresa tu ubicación:</h2>
+                    <h2 class="text-lg sm:text-[15px] md:text-lg font-bold">Ingresa tu ubicación:</h2>
                     <div class="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
-                        <input type="text" placeholder="Ciudad, Estado" class="bg-gray-800 text-white text-base sm:text-sm md:text-base text-center sm:text-left py-2 px-4 rounded inline-block w-full max-w-[217px] border-2 border-gray-700 focus:border-blue-500 focus:ring-blue-500" />
-                        <a href="/choose-menu" class="bg-blue-500 hover:bg-blue-700 text-white text-base sm:text-sm md:text-base font-bold py-2 px-3 rounded inline-block">Confirmar</a>
+                        <input type="text" id="locationInput" placeholder="Ciudad, Estado" class="bg-gray-800 text-white text-lg sm:text-[15px] md:text-lg py-2 px-4 rounded inline-block w-full max-w-[217px] border-2 border-gray-700 focus:border-blue-500 focus:ring-blue-500" required autocomplete="off" />
+                        <button id="confirmButton" class="bg-blue-500 hover:bg-blue-700 text-white text-lg sm:text-[15px] md:text-lg font-bold py-2 px-4 rounded inline-block">Confirmar</button>
                     </div>
                 </div>
             </div>
         </SectionContainer>
     </main>
+
+    <script>
+        document.getElementById("confirmButton")?.addEventListener("click", () => {
+            const input = document.getElementById("locationInput") as HTMLInputElement;
+            if (input) {
+                const ubicacion = input.value.trim();
+                if (ubicacion) {
+                    localStorage.setItem("locationInput", ubicacion);
+                    window.location.href = "/choose-menu";
+                } else {
+                    alert("Ingresa una ubicación.");
+                }
+            }
+        });
+    </script>
 </Layout>
