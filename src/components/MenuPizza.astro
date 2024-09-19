@@ -1,10 +1,11 @@
 ---
 import SectionContainer from "@components/SectionContainer.astro";
+import Image from "@components/Image.astro";
 ---
 
 <SectionContainer id="MenuPizza" classname="flex flex-col items-center justify-center pt-8 pb-16 px-4 sm:px-8 lg:px-16">
     <div class="flex flex-col space-y-4 w-full max-w-xl sm:max-w-2xl lg:max-w-3xl">
-        <img src="/asset/MenuCombos.webp" alt="Imagen del menu de combos" class="w-full object-cover rounded-lg shadow-md" />
-        <img src="/asset/MenuPizzas.webp" alt="Imagen del menu de pizzas" class="w-full object-cover rounded-lg shadow-md" />
+        <Image imagePath="/src/assets/MenuCombos.webp" altText="Imagen del menu de combos" classname="w-full object-cover rounded-lg shadow-md" loading="lazy" />
+        <Image imagePath="/src/assets/MenuPizzas.webp" altText="Imagen del menu de pizzas" classname="w-full object-cover rounded-lg shadow-md" loading="lazy" />
     </div>
 </SectionContainer>
