@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import SectionContainer from "@components/SectionContainer.astro";
+import CardContainer from "@components/CardContainer.astro";
 
 // Recupera la ubicación desde localStorage
 let location = "";
@@ -11,21 +12,106 @@ if (typeof window !== "undefined") {
 
 <Layout title="Selecciona tu producto del menú" description="Disfruta de las mejores pizzas hechas con ingredientes frescos y de calidad. En Pizza Galaxia, cada pizza es una delicia. Ven a probar nuestras especialidades en un ambiente acogedor o haz tu pedido en línea para disfrutar en casa. ¡La experiencia perfecta te espera!">
     <main>
-        <SectionContainer id="MenuProductos" classname="flex w-full min-h-screen mt-20 px-4 sm:px-8 lg:px-16 mx-auto max-w-md">
-            <p class="text-xl text-left" id="displayLocation">
-                {location ? location : "Cargando..."}
-            </p>
+        <SectionContainer id="MenuProductos" classname="max-w-3xl mx-auto mt-20 md:mt-16 p-4">
+            <div class="flex flex-col text-center md:flex-row md:text-left md:gap-2">
+                <p class="text-xl font-semibold">Ubicación:</p>
+                <p class="text-xl" id="displayLocation">
+                    {location ? location : "Cargando..."}
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 mt-4 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <CardContainer imagePath="/src/assets/Combo1.webp" altText="Imagen del combo 1">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">Combo 1</span>
+                        </div>
+                        <span class="font-bold opacity-70 content-center">$270.00</span>
+                    </div>
+                </CardContainer>
+
+                <!-- Card 2 -->
+                <CardContainer imagePath="/src/assets/Combo2.webp" altText="Imagen del combo 2">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">Combo 2</span>
+                        </div>
+                        <span class="font-bold opacity-70 content-center">$380.00</span>
+                    </div>
+                </CardContainer>
+
+                <!-- Card 3 -->
+                <CardContainer imagePath="/src/assets/Combo3.webp" altText="Imagen del combo 3">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">Combo 3</span>
+                        </div>
+                        <span class="font-bold opacity-70 content-center">$150.00</span>
+                    </div>
+                </CardContainer>
+
+                <!-- Card 4 -->
+                <CardContainer imagePath="/src/assets/Combo4.webp" altText="Imagen del combo 4">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">Combo 4</span>
+                        </div>
+                        <span class="font-bold opacity-70 content-center">$99.00</span>
+                    </div>
+                </CardContainer>
+
+                <!-- Card 5 -->
+                <CardContainer imagePath="/src/assets/Pizza3Quesos.webp" altText="Imagen de la pizza de 3 quesos">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">3 Quesos</span>
+                        </div>
+                        <span class="font-bold opacity-70 content-center">$130.00</span>
+                    </div>
+                </CardContainer>
+
+                <!-- Card 6 -->
+                <CardContainer imagePath="/src/assets/PizzaMargarita.webp" altText="Imagen de la pizza de margarita">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">Margarita</span>
+                        </div>
+                        <span class="font-bold opacity-70 content-center">$180.00</span>
+                    </div>
+                </CardContainer>
+
+                <!-- Card 7 -->
+                <CardContainer imagePath="/src/assets/PizzaPepperoni.webp" altText="Imagen de la pizza de pepperoni">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">Pepperoni</span>
+                        </div>
+                        <span class="font-bold opacity-70 content-center">$260.00</span>
+                    </div>
+                </CardContainer>
+
+                <!-- Card 8 -->
+                <CardContainer imagePath="/src/assets/PizzaVegetariana.webp" altText="Imagen de la pizza vegetariana">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">Vegetariana</span>
+                        </div>
+                        <span class="font-bold opacity-70 content-center">$390.00</span>
+                    </div>
+                </CardContainer>
+            </div>
         </SectionContainer>
     </main>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const displayLocation = document.getElementById("displayLocation");
-
-            if (displayLocation) {
-                const location = localStorage.getItem("locationInput");
-                displayLocation.textContent = location ? location : "No se ingresó ninguna ubicación.";
-            }
-        });
-    </script>
 </Layout>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const displayLocation = document.getElementById("displayLocation");
+
+        if (displayLocation) {
+            const location = localStorage.getItem("locationInput");
+            displayLocation.textContent = location ? location : "No se ingresó ninguna ubicación.";
+        }
+    });
+</script>
