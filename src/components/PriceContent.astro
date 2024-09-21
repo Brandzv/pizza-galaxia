@@ -1,0 +1,10 @@
+---
+interface Props {
+    isSelect: boolean;
+    content: string | string[];
+}
+
+const { isSelect, content } = Astro.props;
+---
+
+{isSelect ? <select class="w-[90px] font-bold opacity-70 content-center rounded-md">{Array.isArray(content) && content.length > 0 ? content.map((item) => <option>{item}</option>) : null}</select> : <span class="font-bold opacity-70 content-center">{content}</span>}

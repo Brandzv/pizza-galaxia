@@ -2,6 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import SectionContainer from "@components/SectionContainer.astro";
 import CardContainer from "@components/CardContainer.astro";
+import PriceContent from "@components/PriceContent.astro";
 
 // Recupera la ubicación desde localStorage
 let location = "";
@@ -27,7 +28,7 @@ if (typeof window !== "undefined") {
                         <div class="flex flex-col">
                             <span class="text-xl font-bold">Combo 1</span>
                         </div>
-                        <span class="font-bold opacity-70 content-center">$270.00</span>
+                        <PriceContent isSelect={false} content="$270" />
                     </div>
                 </CardContainer>
 
@@ -37,7 +38,7 @@ if (typeof window !== "undefined") {
                         <div class="flex flex-col">
                             <span class="text-xl font-bold">Combo 2</span>
                         </div>
-                        <span class="font-bold opacity-70 content-center">$380.00</span>
+                        <PriceContent isSelect={false} content="$380" />
                     </div>
                 </CardContainer>
 
@@ -47,7 +48,7 @@ if (typeof window !== "undefined") {
                         <div class="flex flex-col">
                             <span class="text-xl font-bold">Combo 3</span>
                         </div>
-                        <span class="font-bold opacity-70 content-center">$150.00</span>
+                        <PriceContent isSelect={false} content="$150" />
                     </div>
                 </CardContainer>
 
@@ -57,7 +58,7 @@ if (typeof window !== "undefined") {
                         <div class="flex flex-col">
                             <span class="text-xl font-bold">Combo 4</span>
                         </div>
-                        <span class="font-bold opacity-70 content-center">$99.00</span>
+                        <PriceContent isSelect={false} content="$99" />
                     </div>
                 </CardContainer>
 
@@ -67,7 +68,7 @@ if (typeof window !== "undefined") {
                         <div class="flex flex-col">
                             <span class="text-xl font-bold">3 Quesos</span>
                         </div>
-                        <span class="font-bold opacity-70 content-center">$130.00</span>
+                        <PriceContent isSelect={true} content={["Ch. $130", "Md. $180", "Grd. $260", "Fiesta $390"]} />
                     </div>
                 </CardContainer>
 
@@ -77,7 +78,7 @@ if (typeof window !== "undefined") {
                         <div class="flex flex-col">
                             <span class="text-xl font-bold">Margarita</span>
                         </div>
-                        <span class="font-bold opacity-70 content-center">$180.00</span>
+                        <PriceContent isSelect={true} content={["Ch. $130", "Md. $180", "Grd. $260", "Fiesta $390"]} />
                     </div>
                 </CardContainer>
 
@@ -87,7 +88,7 @@ if (typeof window !== "undefined") {
                         <div class="flex flex-col">
                             <span class="text-xl font-bold">Pepperoni</span>
                         </div>
-                        <span class="font-bold opacity-70 content-center">$260.00</span>
+                        <PriceContent isSelect={true} content={["Ch. $130", "Md. $180", "Grd. $260", "Fiesta $390"]} />
                     </div>
                 </CardContainer>
 
@@ -97,7 +98,77 @@ if (typeof window !== "undefined") {
                         <div class="flex flex-col">
                             <span class="text-xl font-bold">Vegetariana</span>
                         </div>
-                        <span class="font-bold opacity-70 content-center">$390.00</span>
+                        <PriceContent isSelect={true} content={["Ch. $130", "Md. $180", "Grd. $260", "Fiesta $390"]} />
+                    </div>
+                </CardContainer>
+
+                <!-- Card 9 -->
+                <CardContainer imagePath="/src/assets/Boneless.webp" altText="Imagen de boneless">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">Boneless</span>
+                        </div>
+                        <PriceContent isSelect={false} content={"$100"} />
+                    </div>
+                </CardContainer>
+
+                <!-- Card 10 -->
+                <CardContainer imagePath="/src/assets/AlitasDePollo.webp" altText="Imagen de alitas de pollo">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">Alitas de Pollo</span>
+                        </div>
+                        <PriceContent isSelect={false} content={"$100"} />
+                    </div>
+                </CardContainer>
+
+                <!-- Card 11 -->
+                <CardContainer imagePath="/src/assets/PapasFritas.webp" altText="Imagen de papas a la francesa">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">Papas a la francesa</span>
+                        </div>
+                        <PriceContent isSelect={false} content={"$45"} />
+                    </div>
+                </CardContainer>
+
+                <!-- Card 12 -->
+                <CardContainer imagePath="/src/assets/ArosDeCebolla.webp" altText="Imagen de aros de cebolla">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">Aros de cebolla</span>
+                        </div>
+                        <PriceContent isSelect={false} content={"$70"} />
+                    </div>
+                </CardContainer>
+
+                <!-- Card 13 -->
+                <CardContainer imagePath="/src/assets/RefrescoEnLata.webp" altText="Imagen de refresco en lata">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">Refresco en lata</span>
+                        </div>
+                        <PriceContent isSelect={false} content={"$35"} />
+                    </div>
+                </CardContainer>
+
+                <!-- Card 14 -->
+                <CardContainer imagePath="/src/assets/Refresco600ml.webp" altText="Imagen de refresco 600ml">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">Refresco 600ml</span>
+                        </div>
+                        <PriceContent isSelect={false} content={"$50"} />
+                    </div>
+                </CardContainer>
+
+                <!-- Card 15 -->
+                <CardContainer imagePath="/src/assets/RefrescoVariosSabores.webp" altText="Imagen de refresco en varios sabores">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold">Refresco d/sabores</span>
+                        </div>
+                        <PriceContent isSelect={false} content={"$70"} />
                     </div>
                 </CardContainer>
             </div>
