@@ -8,6 +8,7 @@ const { title, description } = Astro.props;
 
 import Background from "@components/Background.astro";
 import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
 ---
 
 <!doctype html>
@@ -23,6 +24,7 @@ import Header from "@components/Header.astro";
         <Background />
         <Header />
         <slot />
+        <Footer />
     </body>
 </html>
 <style is:global>
