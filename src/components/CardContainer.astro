@@ -5,44 +5,65 @@ import { Image } from "astro:assets";
 interface Props {
     imagePath: string;
     altText: string;
+    price: string | string[];
 }
 
-const { imagePath, altText } = Astro.props;
+const { imagePath, altText, price } = Astro.props;
 
-// Importar imágenes dinámicas de la carpeta "src/assets"
 const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/*.{jpeg,jpg,png,gif,webp}");
 if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist en glob: "src/assets/*.{jpeg,jpg,png,gif,webp}"`);
+
+const uniqueId = crypto.randomUUID();
 ---
 
-<div class="w-60 h-80 bg-[#1F2937] p-3 flex flex-col gap-1 rounded-2xl">
-    <Image src={images[imagePath]()} alt={altText} loading="lazy" class="dynamic-image h-48 bg-white w-full rounded-xl mx-auto" />
+<div class="w-60 h-80 bg-[#1F2937] p-3 flex flex-col gap-1 rounded-2xl" data-id={uniqueId}>
+    <Image id={`dynamic-image-${uniqueId}`} src={images[imagePath]()} alt={altText} loading="lazy" class="dynamic-image h-48 bg-white w-full rounded-xl mx-auto" />
     <div class="flex flex-col gap-4">
         <slot />
-        <button class="hover:bg-[#3B82F6] text-gray-50 bg-[#1850b9] py-2 rounded-md">Comprar</button>
+        <button id={`save-image-${uniqueId}`} class="save-image hover:bg-[#3B82F6] text-gray-50 bg-[#1850b9] py-2 rounded-md">Comprar</button>
     </div>
 </div>
 
 <script>
+    interface SavedItem {
+        imagePath: string;
+        price: string;
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
-        // Seleccionar todas las imágenes con la clase 'dynamic-image'
-        const imageElements = document.querySelectorAll(".dynamic-image");
+        const cards = document.querySelectorAll("[data-id]");
 
-        // Crear un observador de intersección
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    // Si la imagen está en la pantalla, cargarla con "eager"
-                    entry.target.setAttribute("loading", "eager");
-                } else {
-                    // Si no está en la pantalla, mantener "lazy"
-                    entry.target.setAttribute("loading", "lazy");
-                }
-            });
-        });
+        cards.forEach((card) => {
+            const uniqueId = card.getAttribute("data-id");
+            const saveImageButton = document.querySelector<HTMLButtonElement>(`#save-image-${uniqueId}`);
+            const dynamicImage = document.querySelector<HTMLImageElement>(`#dynamic-image-${uniqueId}`);
+            const priceSelect = card.querySelector("select"); // Busca el select en el card
 
-        // Observar cada imagen
-        imageElements.forEach((image) => {
-            observer.observe(image);
+            if (saveImageButton && dynamicImage && priceSelect) {
+                saveImageButton.addEventListener("click", () => {
+                    const imagePath = dynamicImage.getAttribute("src");
+                    const price = priceSelect ? priceSelect.value : ""; // Obtiene el valor seleccionado del select
+
+                    if (imagePath && price) {
+                        let savedItems: SavedItem[] = JSON.parse(localStorage.getItem("savedItems") || "[]");
+
+                        const item: SavedItem = {
+                            imagePath,
+                            price,
+                        };
+
+                        if (!savedItems.find((i: SavedItem) => i.imagePath === imagePath)) {
+                            savedItems.push(item);
+                        }
+
+                        localStorage.setItem("savedItems", JSON.stringify(savedItems));
+                    } else {
+                        console.error("No se pudo obtener la ruta de la imagen o el precio.");
+                    }
+                });
+            } else {
+                console.error("No se pudo encontrar la imagen o el botón correspondiente.");
+            }
         });
     });
 </script>
