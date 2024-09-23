@@ -1,0 +1,65 @@
+---
+import Layout from "@layouts/Layout.astro";
+import SectionContainer from "@components/SectionContainer.astro";
+---
+
+<Layout title="Carrito de compras" description="Revisa los productos que has agregado a tu lista. Aquí puedes ver las imágenes guardadas y gestionar tus elecciones.">
+    <main class="flex-grow">
+        <SectionContainer id="ProductosGuardados" classname="max-w-3xl mx-auto mt-20 md:mt-16 p-4">
+            <h1 class="text-2xl font-bold mb-4">Carrito</h1>
+            <div id="saved-images" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Aquí se insertarán las imágenes dinámicamente -->
+            </div>
+            <button onclick="clearSavedImages()" class="clear-storage hover:bg-red-500 text-white bg-red-600 py-2 px-4 rounded-md"> Confirmar </button>
+        </SectionContainer>
+    </main>
+
+    <script>
+        interface SavedItem {
+            imagePath: string;
+            price: string;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedImagesContainer = document.getElementById("saved-images") as HTMLElement | null;
+
+            if (!savedImagesContainer) {
+                console.error("No se encontró el contenedor de imágenes guardadas.");
+                return;
+            }
+
+            // Obtener los elementos guardados en localStorage
+            const savedItems: SavedItem[] = JSON.parse(localStorage.getItem("savedItems") || "[]");
+
+            if (savedItems.length > 0) {
+                savedItems.forEach(({ imagePath, price }: SavedItem) => {
+                    const itemContainer = document.createElement("div");
+                    itemContainer.classList.add("flex", "flex-col", "items-center", "gap-2");
+
+                    const imgElement = document.createElement("img");
+                    imgElement.src = imagePath;
+                    imgElement.alt = "Imagen guardada";
+                    imgElement.classList.add("w-full", "h-auto", "rounded-lg", "shadow-md");
+
+                    const priceElement = document.createElement("span");
+                    priceElement.textContent = price;
+                    priceElement.classList.add("text-lg", "font-semibold");
+
+                    itemContainer.appendChild(imgElement);
+                    itemContainer.appendChild(priceElement);
+                    savedImagesContainer.appendChild(itemContainer);
+                });
+            } else {
+                const noImagesMessage = document.createElement("p");
+                noImagesMessage.textContent = "No hay imágenes guardadas.";
+                noImagesMessage.classList.add("text-gray-600", "italic");
+                savedImagesContainer.appendChild(noImagesMessage);
+            }
+        });
+
+        function clearSavedImages() {
+            localStorage.removeItem("savedItems");
+            alert("Datos de imágenes eliminados.");
+        }
+    </script>
+</Layout>
