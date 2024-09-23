@@ -5,10 +5,9 @@ import { Image } from "astro:assets";
 interface Props {
     imagePath: string;
     altText: string;
-    price: string | string[];
 }
 
-const { imagePath, altText, price } = Astro.props;
+const { imagePath, altText } = Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/*.{jpeg,jpg,png,gif,webp}");
 if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist en glob: "src/assets/*.{jpeg,jpg,png,gif,webp}"`);
@@ -37,12 +36,26 @@ const uniqueId = crypto.randomUUID();
             const uniqueId = card.getAttribute("data-id");
             const saveImageButton = document.querySelector<HTMLButtonElement>(`#save-image-${uniqueId}`);
             const dynamicImage = document.querySelector<HTMLImageElement>(`#dynamic-image-${uniqueId}`);
-            const priceSelect = card.querySelector("select"); // Busca el select en el card
 
-            if (saveImageButton && dynamicImage && priceSelect) {
+            // Busca el <select> y el <span>
+            const priceSelect = card.querySelector("select");
+            const priceSpan = card.querySelector("span.price"); // Selecciona el span que contega la clase price
+
+            if (saveImageButton && dynamicImage) {
                 saveImageButton.addEventListener("click", () => {
                     const imagePath = dynamicImage.getAttribute("src");
-                    const price = priceSelect ? priceSelect.value : ""; // Obtiene el valor seleccionado del select
+
+                    // Verifica si hay un <select> o <span> y obtiene el valor
+                    let price: string | undefined;
+                    if (priceSelect) {
+                        price = priceSelect.value; // Obtiene el valor del <select>
+                        console.log("Precio obtenido del select:", price);
+                    } else if (priceSpan) {
+                        price = priceSpan.textContent?.trim(); // Obtiene el contenido del <span>
+                        console.log("Precio obtenido del span:", price);
+                    } else {
+                        console.error("No se encontró el select ni el span para obtener el precio.");
+                    }
 
                     if (imagePath && price) {
                         let savedItems: SavedItem[] = JSON.parse(localStorage.getItem("savedItems") || "[]");
@@ -62,7 +75,7 @@ const uniqueId = crypto.randomUUID();
                     }
                 });
             } else {
-                console.error("No se pudo encontrar la imagen o el botón correspondiente.");
+                console.error("No se pudo encontrar la imagen, el botón o el precio correspondiente.");
             }
         });
     });
