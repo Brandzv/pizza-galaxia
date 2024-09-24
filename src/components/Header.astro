@@ -25,6 +25,12 @@ const currentPath = Astro.url.pathname;
                     <a href="/location" class={`block py-2 px-3 rounded md:p-0 ${currentPath === "/location" ? "text-blue-700 dark:text-blue-500" : "text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500"}`} aria-current={currentPath === "/location" ? "page" : undefined}>Pedir online</a>
                 </li>
                 <li>
+                    <a href="/about" class={`block py-2 px-3 rounded md:p-0 ${currentPath === "/about" ? "text-blue-700 dark:text-blue-500" : "text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500"}`} aria-current={currentPath === "/about" ? "page" : undefined}>Quienes somos</a>
+                </li>
+                <li>
+                    <a href="/contact" class={`block py-2 px-3 rounded md:p-0 ${currentPath === "/contact" ? "text-blue-700 dark:text-blue-500" : "text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500"}`} aria-current={currentPath === "/contact" ? "page" : undefined}>Contacto</a>
+                </li>
+                <li>
                     <a href="/cart" aria-label="Ir al carrito de compras" class={`block py-2 px-3 rounded md:p-0 ${currentPath === "/cart" ? "text-blue-700 dark:text-blue-500" : "text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500"}`} aria-current={currentPath === "/cart" ? "page" : undefined}>
                         <span id="cart-icon" class="relative inline-block">
                             <Cart />
