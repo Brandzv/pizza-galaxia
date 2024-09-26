@@ -7,6 +7,6 @@ interface Props {
 const { isSelect, content } = Astro.props;
 ---
 
-<div class="price-content">
-    {isSelect ? <select class="w-[90px] font-bold opacity-70 content-center rounded-md">{Array.isArray(content) && content.length > 0 ? content.map((item) => <option>{item}</option>) : null}</select> : <span class="price font-bold opacity-70 content-center">{content}</span>}
+<div class="price-content content-center">
+    {isSelect ? <select class="w-[95px] font-bold opacity-70 content-center rounded-md">{Array.isArray(content) && content.length > 0 ? content.map((item) => <option>{item}</option>) : null}</select> : <span class="price font-bold opacity-70 content-center">{content}</span>}
 </div>
