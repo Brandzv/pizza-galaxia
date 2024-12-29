@@ -1,54 +1,103 @@
-# Astro Starter Kit: Basics
+# Pizza Galaxia
 
-```sh
-npm create astro@latest -- --template basics
+![Inicio](https://github.com/Brandzv/pizza-galaxia/blob/main/src/assets/inicio.png)
+
+## Descripción
+
+Este proyecto es una página web interactiva que simula la compra de productos en una pizzería. Utiliza el almacenamiento local para guardar la ubicación ingresada y los productos seleccionados, para ser mostrados posteriormente.
+
+## ⚙️ Tecnologías Utilizadas
+
+[![NPM][npm-badge]][npm-url]
+[![Astro][astro-badge]][astro-url]
+[![TailwindCSS][tailwind-badge]][tailwind-url]
+
+[npm-url]: https://www.npmjs.com/
+[npm-badge]: https://img.shields.io/badge/NPM-v10.8.2-orange?style=for-the-badge&logo=npm
+[astro-url]: https://astro.build/
+[astro-badge]: https://img.shields.io/badge/Astro-v4.15.5-blue?style=for-the-badge&logo=astro
+[tailwind-url]: https://tailwindcss.com/
+[tailwind-badge]: https://img.shields.io/badge/TailwindCSS-v3.4.11-06B6D4?style=for-the-badge&logo=tailwindcss
+
+## 📋 Prerrequisitos
+
+-   Node.js (versión 20.18.0)
+-   Npm (versión 10.8.2)
+
+## 🛠️ Instalación
+
+1. Clona el repositorio
+
+```
+git clone https://github.com/Brandzv/pizza-galaxia.git
+cd pizza-galaxia
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+2. Instala las dependencias
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+npm install
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+3. Despliega el servidor en local
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```
+npm run dev
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+El proyecto estará disponible en http://localhost:4321/
 
-## 🧞 Commands
+## 💻 Uso
 
-All commands are run from the root of the project, from a terminal:
+```
+src/pages/
+├── index.astro          // Ruta: /
+├── location.astro       // Ruta: /location
+├── choose-menu.astro    // Ruta: /choose-menu
+├── about.astro          // Ruta: /about
+├── contact.astro        // Ruta: /contact
+└── cart.astro           // Ruta: /cart
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Descripción de páginas
 
-## 👀 Want to learn more?
+#### Página principal (`/`)
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+-   Interfaz principal con dos botones con redirección a la página `/location`.
+-   Sección con efecto parallax sobre imagen de una galaxia.
+-   Menú ubicado al final de la página, mostrando las opciones disponibles con su precio.
+
+#### Ubicación (`/location`)
+
+-   Campo de entrada para que el usuario ingrese su ciudad.
+-   Interfaz minimalista centrada en el ingreso de la ubicación.
+
+#### Seleccionar productos (`/choose-menu`)
+
+-   Dirección ingresada por el usuario en la parte superior.
+-   Catálogo de productos presentado en cards, cada una mostrando:
+    -   Imagen del producto.
+    -   Nombre del producto.
+    -   Precio.
+    -   Botón de "Comprar" para cada producto.
+-   Botón flotante para acceder al carrito ubicado en la esquina inferior derecha.
+-   Diseño responsive que se adapta a diferentes tamaños de pantalla.
+
+#### Quienes somos (`/about`)
+
+-   Información acerca de la empresa como:
+    -   Misión de la empresa.
+    -   Visión de la empresa.
+    -   Valores de la empresa.
+
+#### Contacto (`/contact`)
+
+-   Información de contacto de la empresa:
+    -   Número telefónico para atención al cliente.
+    -   Dirección física del establecimiento.
+    -   Enlace a la página oficial de Facebook.
+
+#### Carrito (`/cart`)
+
+-   Productos seleccionados en la página `/choose-menu`.
+-   Botón para eliminar productos no deseados.
