@@ -15,10 +15,24 @@ import Footer from "@components/Footer.astro";
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
+        <meta name="title" content="Pizza Galaxia" />
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/png" href="/favicon.png" />
+
         <title>{title}</title>
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://pizza-galaxia.vercel.app/" />
+        <meta property="og:title" content="Pizza Galaxia" />
+        <meta property="og:description" content="Disfruta de las mejores pizzas hechas con ingredientes frescos y de calidad. En Pizza Galaxia, cada pizza es una delicia. Ven a probar nuestras especialidades en un ambiente acogedor o haz tu pedido en línea para disfrutar en casa. ¡La experiencia perfecta te espera!" />
+        <meta property="og:image" content="/openGraph_Image.jpg" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://pizza-galaxia.vercel.app/" />
+        <meta property="twitter:title" content="Pizza Galaxia" />
+        <meta property="twitter:description" content="Disfruta de las mejores pizzas hechas con ingredientes frescos y de calidad. En Pizza Galaxia, cada pizza es una delicia. Ven a probar nuestras especialidades en un ambiente acogedor o haz tu pedido en línea para disfrutar en casa. ¡La experiencia perfecta te espera!" />
+        <meta property="twitter:image" content="/openGraph_Image.jpg" />
     </head>
     <body>
         <Background />
