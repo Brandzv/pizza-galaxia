@@ -4,6 +4,8 @@ import PedirOnline from "@components/PedirOnline.astro";
 import Parallax from "@components/Parallax.astro";
 import ArrowBotton from "@icons/ArrowBotton.astro";
 import MenuPizza from "@components/MenuPizza.astro";
+import Exclamation from "@icons/Exclamation.astro";
+import Close from "@icons/Close.astro";
 ---
 
 <Layout title="Pizza Galaxia" description="Disfruta de las mejores pizzas hechas con ingredientes frescos y de calidad. En Pizza Galaxia, cada pizza es una delicia. Ven a probar nuestras especialidades en un ambiente acogedor o haz tu pedido en línea para disfrutar en casa. ¡La experiencia perfecta te espera!">
@@ -16,4 +18,19 @@ import MenuPizza from "@components/MenuPizza.astro";
         </div>
         <MenuPizza />
     </main>
+
+    <div class="fixed z-[1] bottom-4 right-4 flex items-center p-4 mb-4 text-sm rounded-lg bg-gray-800 text-blue-400 border border-blue-800" id="info-alert" role="alert">
+        <Exclamation />
+
+        <div class="mr-2">
+            <span class="font-medium">Info alert!</span> Este sitio es un proyecto universitario y no representa una pizzería real.
+        </div>
+
+        <button type="button" class="ms-auto -mx-1.5 -my-1.5 rounded-lg focus:ring-2 focus:ring-blue-400 p-1.5 hover:bg-blue-600 inline-flex items-center justify-center h-8 w-8 bg-gray-800 text-blue-400" id="close-alert" aria-label="Close">
+            <span class="sr-only">Close</span>
+            <Close />
+        </button>
+    </div>
 </Layout>
+
+<script type="module" src="/src/ts/infoAlert.ts"></script>
