@@ -33,4 +33,13 @@ import Close from "@icons/Close.astro";
     </div>
 </Layout>
 
-<script src="../src/ts/infoAlert.ts"></script>
+<script>
+    const alertElement = document.getElementById("info-alert");
+    const closeButton = document.getElementById("close-alert");
+
+    if (closeButton && alertElement) {
+        closeButton.addEventListener("click", () => {
+            alertElement.classList.add("hidden");
+        });
+    }
+</script>
